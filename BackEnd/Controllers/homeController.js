@@ -1,5 +1,6 @@
 const configDB = require('../Database/configDB');
 const mysql = require('mysql');
+const jwt = require('jsonwebtoken');
 
 const homeController = {};
 
@@ -62,10 +63,21 @@ homeController.login_post = (req, res) => {
                     console.log("Existe un error: "+error);
                     connection.end();
                 }
-
                 if(configDB.config.users_role.USER == JSON.parse(JSON.stringify(result))[0].role_id){
                     console.log("Perfil de usuario");
-                    res.redirect('/user');  
+                    console.log(req.body);
+                    const data = {
+                        email: req.body.email, 
+                        password: req.body.password
+                    };
+                    const token = jwt.sign({
+                        data: data
+                        }, 'my_secret_key_cool',{ 
+                            expiresIn: '24h' 
+                        }
+                    );
+                    res.header('token-header', token);
+                    res.redirect('/user');
                     connection.end();
                 }
                 if(configDB.config.users_role.ADMIN == JSON.parse(JSON.stringify(result))[0].role_id){

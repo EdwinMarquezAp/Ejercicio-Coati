@@ -13,7 +13,7 @@ const app = express();
 app.set('port', process.env.PORT || 8080);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../FrontEnd/Views'));
-app.disable('x-powered-by');
+
 
 /* 	  PATH PUBLIC     */
 app.use(express.static(path.join(__dirname, '../FrontEnd/Public')));
@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, '../FrontEnd/Public')));
 /*    MIDDLEWARE DB     */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-	extended: false
+	extended: true
 }));
 
 // Path router
