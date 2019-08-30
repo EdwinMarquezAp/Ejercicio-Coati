@@ -1,0 +1,25 @@
+<h1 class="text-center">Lista de usuarios</h1>
+<div class="container">
+	<div class="row">
+		<table class="table">
+			<thead>
+			    <tr>
+			     	<th scope="col">ID</th>
+				    <th scope="col">Nombre</th>
+				    <th scope="col">Apellidos</th>
+				    <th scope="col">Correo</th>
+			    </tr>
+			</thead>
+			<tbody>
+				<% for(var i = 0; i < data.length; i++ ){ %>
+				    <tr>
+				      	<th scope="row"> <%= data[i].id %> </th>
+				      	<td><%= data[i].name %></td>
+				      	<td><%= data[i].last_name %></td>
+				      	<td><%= data[i].email %></td>
+				    </tr>
+			    <% } %>
+			</tbody>
+		</table>
+	</div>
+</div>

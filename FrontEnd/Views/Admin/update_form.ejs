@@ -1,0 +1,35 @@
+<form action="/admin/modificar/user/" method="post" class="form-group form-background">
+	<div class="form-group">
+		<input type="text" id="name" name="name" placeholder="Nombre:" class="form-control" value="" required>
+	</div>
+	<div class="form-group">
+		<input type="text" id="last_name" name="last_name" placeholder="Apellidos:" class="form-control" value="" required>
+	</div>
+	<div class="form-group">
+		<input type="email" id="email" name="email" placeholder="Correo:" class="form-control" required>
+	</div>
+	<div class="form-group">
+		<input type="password" id="password" name="password" placeholder="Contraseña" class="form-control" required>
+	</div>
+	<div class="form-group">
+		<div class="form-check">
+			<input class="form-check-input margin-left-none" type="radio" name="type_user" id="type_user1" value="1" checked>
+			<label class="form-check-label" for="type_user1">
+			Administrador
+			</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input margin-left-none" type="radio" name="type_user" id="type_user2" value="2">
+			<label class="form-check-label" for="type_user2">
+			Usuario
+			</label>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="container padding-none">
+			<div class="row margin-none">
+				<button type="submit" class="btn btn-primary col-md-4">Registrar</button>
+			</div>
+		</div>
+	</div>
+</form>
