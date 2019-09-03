@@ -18,16 +18,16 @@ router.get('/registrar', homeController.sign_in);
 
 router.post('/registrar', homeController.sign_up);
 
-router.get('/user', [jwt.verifyToken], userController.home);
+router.get('/user', [jwt.isAuthenticated], userController.home);
 
-router.get('/admin',[jwt.verifyToken], adminController.home);
+router.get('/admin',[jwt.isAuthenticated], adminController.home);
 
-router.post('/admin/crear/user/',[jwt.verifyToken], adminController.crear);
+router.post('/admin/crear/user/',[jwt.isAuthenticated], adminController.crear);
 
-router.get('/admin/modificar/user/:id',[jwt.verifyToken], adminController.modificar);
+router.get('/admin/modificar/user/:id',[jwt.isAuthenticated], adminController.modificar);
 
-router.post('/admin/modificar/user/:id',[jwt.verifyToken], adminController.modificar_action);
+router.post('/admin/modificar/user/:id',[jwt.isAuthenticated], adminController.modificar_action);
 
-router.get('/admin/eliminar/user/:id',[jwt.verifyToken], adminController.eliminar);
+router.get('/admin/eliminar/user/:id',[jwt.isAuthenticated], adminController.eliminar);
 
 module.exports = router;

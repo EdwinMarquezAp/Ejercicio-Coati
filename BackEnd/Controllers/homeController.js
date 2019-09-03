@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const homeController = {};
 
 homeController.login = (req, res) => {
-	res.render('index',{
+    res.render('index',{
 		login: false
 	});
 };
@@ -65,24 +65,30 @@ homeController.login_post = (req, res) => {
                 }
                 if(configDB.config.users_role.USER == JSON.parse(JSON.stringify(result))[0].role_id){
                     console.log("Perfil de usuario");
-                    console.log(req.body);
                     const data = {
                         email: req.body.email, 
                         password: req.body.password
                     };
-                    const token = jwt.sign({
+                    let token = jwt.sign({
                         data: data
                         }, 'my_secret_key_cool',{ 
-                            expiresIn: '24h' 
+                            expiresIn: '24h',
+                            algorithm: 'HS256'
                         }
                     );
-                    res.header('token-header', token);
                     res.redirect('/user');
                     connection.end();
                 }
-                if(configDB.config.users_role.ADMIN == JSON.parse(JSON.stringify(result))[0].role_id){
+                else if(configDB.config.users_role.ADMIN == JSON.parse(JSON.stringify(result))[0].role_id){
                     console.log("Perfil de administrador");
                     res.redirect('/admin');
+                    connection.end();
+                }
+                else{
+                    console.log("PERFIL INCORRECTO");
+                    res.render('index',{
+                        login: true
+                    });
                     connection.end();
                 }
             });
